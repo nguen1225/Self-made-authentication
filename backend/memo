@@ -1,0 +1,63 @@
+管理者画面
+1. ログイン画面とメニュー画面を作る
+    まずcontroller、route、viewの作成
+
+    LoginController
+    login.blade.php
+    Route::get('/login', 'LoginController@login');
+
+    画面に必要なもの、
+    IDフォーム
+    passwordフォーム
+    ログインボタン
+    
+
+
+    MenuController
+    menu.blade.php
+    Route::get('/menu', 'MenuController@menu');
+
+
+2. IDとパスワードが正しいかどうか
+    config/auth.phpをいじる
+    IDとパスワードをチェックできるメソットを作る
+    controllerは記述完了動くかわからんけど
+    dbから情報をとってくる(直接dbでsqlを発行する？orマイグレーションファイルを作る。)
+    tableがいるけど、IDとパスワードのカラムだけでいい。
+    viewはどうやって値を送るのかがわからない。
+
+    419エラー（セッション切れや CSRFトークンが含まれない不正なアクセスがあるときにでる）
+    @csrf はランダムな文字列が値として割り振られたinput要素に書き変わる。このランダムな文字列がCSRFトークンです。コメントが投稿される際に入力値と一緒に送信されるこのトークンによって、リクエストの正当性をチェックするのです。
+
+
+3. まちがえてたらエラーメッセージ
+    viewの方で、controllerを経由してエラーメッセージをはくようにする。
+
+4. ログインしていないときにメニュー画面にいくとログイン画面に戻す。
+    controllerにcheck関数を記載して対応。
+
+5. すでにログインしていたらメニューに遷移する 。
+    なんかすでにできている。
+
+
+
+
+php artisan make:controller AdminLoginController (コントローラー作成例)
+php artisan make:model Administrator -m (-mつけるとマイグレーションファイルも作成する。)
+テストデータ作り方
+php artisan make:seeder AdministratorSeeder
+public function run() {
+    \DB::table('Administrator')->insert([
+        'name' => 'YQUAL',
+        'email' => 'info@s-yqual.com',
+        'password' => \Hash::make('admin'),
+    ]);
+}
+
+public function run() {
+    $this->call([
+        AdministratorSeeder::class,
+    ]);
+}
+
+php artisan db:seed
