@@ -36,16 +36,16 @@ class LoginController extends Controller
     }
 
 
-    function logincheck() {
+    // function logincheck() {
 
-        $inputId = AdministratorRequest::input('id');
-        $inputPassword = AdministratorRequest::input('password');
-        $validId = Administrator::select('id')->get();
-        $validPassword = Administrator::select('password')->get();
+    //     $inputId = AdministratorRequest::input('id');
+    //     $inputPassword = AdministratorRequest::input('password');
+    //     $validId = Administrator::select('id')->get();
+    //     $validPassword = Administrator::select('password')->get();
 
-        if ($inputId === $validId && $inputPassword === $validPassword) {
-            return view('menu');
-        }
-        return view('login');
-    }
+    //     if ($inputId === $validId && $inputPassword === $validPassword) {
+    //         return view('menu');
+    //     }
+    //     return view('login');
+    // }
 }

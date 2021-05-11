@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/login', 'App\Http\Controllers\LoginController@login');
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('login');
-Route::get('/menu', 'App\Http\Controllers\MenuController@menu')->middleware('auth');;
+Route::get('/menu', 'App\Http\Controllers\MenuController@menu')->middleware('auth');
